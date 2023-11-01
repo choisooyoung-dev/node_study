@@ -54,12 +54,19 @@ router.get("/goods/:goodsId", (req, res) => {
   //   }
 
   // for of 와 동일
-  const [result] = goods.filter((good) => Number(goodsId) === good.goodsId);
+  const [detail] = goods.filter((good) => Number(goodsId) === good.goodsId);
 
-  res.status(200).json({ detail: result });
+  res.status(200).json({ detail });
+});
+
+router.post("/goods/:goodsId/cart", async (req, res) => {
+  const goodsId = req.params.goodsId;
+  const quantity = req.body.quantity;
 });
 
 const Goods = require("../schemas/goods");
+
+// 내부적으로 동기적으로 처리하기 위해 async씀
 router.post("/goods", async (req, res) => {
   const { goodsId, name, thumbnailUrl, category, price } = req.body;
 
