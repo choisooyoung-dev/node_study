@@ -3,6 +3,10 @@ const app = express();
 const port = 3000;
 const goodsRouter = require("./routes/goods.js");
 
+// index.js 파일은 해당 폴더를 불러와도 바로 사용이 되기 때문에 폴더만 불러와도 ok
+const connect = require("./schemas");
+connect();
+
 // body parser를 써서 request 안에 body 정보를 정상적으로 보고싶을 때 쓴다.
 app.use(express.json());
 
